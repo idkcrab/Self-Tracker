@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B055DD74-A59E-40F6-98E7-AEF300C01D5C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Self_Tracker__by_imcrab_</RootNamespace>
+    <AssemblyName>Self Tracker %28by imcrab%29</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="AssistantCoreSDKRuntime">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\AssistantCoreSDKRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Backtrace.Unity">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Backtrace.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Harmony">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\BepInEx.Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Fusion.Log">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Fusion.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="Fusion.Realtime">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Fusion.Realtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Fusion.Runtime">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Fusion.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Fusion.Sockets">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Fusion.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="Fusion.Unity">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Fusion.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="GT_CustomMapSupportRuntime">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\GT_CustomMapSupportRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="KID">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\KID.dll</HintPath>
+    </Reference>
+    <Reference Include="LIV.LCK">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\LIV.LCK.dll</HintPath>
+    </Reference>
+    <Reference Include="LIV.LCK_GorillaTag">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\LIV.LCK_GorillaTag.dll</HintPath>
+    </Reference>
+    <Reference Include="LIV.NativeAudioBridge">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\LIV.NativeAudioBridge.dll</HintPath>
+    </Reference>
+    <Reference Include="Meta.VoiceSDK.Mic.Common">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Meta.VoiceSDK.Mic.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Meta.VoiceSDK.Mic.Other">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Meta.VoiceSDK.Mic.Other.dll</HintPath>
+    </Reference>
+    <Reference Include="Meta.WitAi">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Meta.WitAi.dll</HintPath>
+    </Reference>
+    <Reference Include="Meta.WitAi.Conduit">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Meta.WitAi.Conduit.dll</HintPath>
+    </Reference>
+    <Reference Include="Meta.WitAi.Lib">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Meta.WitAi.Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="Meta.WitAi.TTS">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Meta.WitAi.TTS.dll</HintPath>
+    </Reference>
+    <Reference Include="modio.UnityPlugin">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\modio.UnityPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\MonoMod.RuntimeDetour.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.Utils">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\MonoMod.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="NanoSockets">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\NanoSockets.dll</HintPath>
+    </Reference>
+    <Reference Include="NativeGallery">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\NativeGallery.dll</HintPath>
+    </Reference>
+    <Reference Include="nexus.nexussdk.Runtime">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\nexus.nexussdk.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Oculus.Platform">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Oculus.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Oculus.VR">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Oculus.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="Pathfinding.ClipperLib">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Pathfinding.ClipperLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
+    <Reference Include="Pathfinding.Poly2Tri">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Pathfinding.Poly2Tri.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Photon3Unity3D.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonRealtime">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\PhotonRealtime.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonUnityNetworking">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\PhotonUnityNetworking.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonUnityNetworking.Utilities">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\PhotonUnityNetworking.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonVoice">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\PhotonVoice.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonVoice.API">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\PhotonVoice.API.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonVoice.Fusion">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\PhotonVoice.Fusion.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonVoice.PUN">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\PhotonVoice.PUN.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayFab">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\PlayFab.dll</HintPath>
+    </Reference>
+    <Reference Include="SteamVR">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\SteamVR.dll</HintPath>
+    </Reference>
+    <Reference Include="SteamVR_Actions">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\SteamVR_Actions.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Internals, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\System.ServiceModel.Internals.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unity.Addressables">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Animation.Rigging">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.Animation.Rigging.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.Burst.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Unsafe">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Collections">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Collections.LowLevel.ILSupport">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.InputSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.ProBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.KdTree">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.ProBuilder.KdTree.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.Poly2Tri">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.ProBuilder.Poly2Tri.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Profiling.Core">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.Profiling.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.ResourceManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Splines">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.Splines.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.CoreUtils">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.XR.CoreUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.Interaction.Toolkit">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.XR.Interaction.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.Management">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.XR.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.OpenVR">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Unity.XR.OpenVR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.AndroidJNIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.ARModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.ClusterRendererModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ContentLoadModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.ContentLoadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DSPGraphModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.DSPGraphModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.HotReloadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.NVIDIAModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.NVIDIAModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.PerformanceReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.ProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PropertiesModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.PropertiesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.StreamingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.SubsystemsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreFontEngineModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreTextEngineModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.TLSModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityCurlModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.UnityCurlModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.VFXModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VirtualTexturingModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.VirtualTexturingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XR.LegacyInputHelpers">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Valve.Newtonsoft.Json">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\Valve.Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="VoiceSDK.Runtime">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\VoiceSDK.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\websocket-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ZString">
+      <HintPath>..\..\..\..\Downloads\netstandard2.1-20250601T003400Z-1-001\netstandard2.1\ZString.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Plugin.cs" />
+    <Compile Include="PluginInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Directory.Build.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Directory.Build.targets" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
