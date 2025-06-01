@@ -1,5 +1,5 @@
 # Self-Tracker
-Hi my namer is 'imcrab' and I made this mod.
+Hi my name is 'imcrab' and I made this mod.
 
 If you would like video instructions you can find it [here](https://www.youtube.com/watch?v=Yw2vO8smPho).
 
