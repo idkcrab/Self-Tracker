@@ -2,163 +2,129 @@
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System;
 using System.IO;
 
-[BepInPlugin("com.imcrab.gtroomnotifier.full", "GT Self Tracker + UI", "1.8.1")]
-public class GTRoomNotifierFull : BaseUnityPlugin
+[BepInPlugin("com.imcrab.gtroomnotifier.full", "GT Self Tracker + UI", "2.0.0")]
+public class GTRoomNotifierFull : BaseUnityPlugin, IInRoomCallbacks
 {
-    private string webhookUrl = "";
-    private string roleId = "";
-    private string lastRoom = "";
-    private string webhookFilePath;
-    private string roleFilePath;
+    string webhookUrl = "";
+    string roleId = "";
 
-    // UI
-    private GameObject notificationGO;
-    private Text notificationText;
+    string webhookFile;
+    string roleFile;
 
-    private async void Start()
+    GameObject canvasObj;
+    TextMeshProUGUI notifText;
+
+    void Awake()
     {
-        webhookFilePath = Path.Combine(Paths.PluginPath, "webhook.txt");
-        roleFilePath = Path.Combine(Paths.PluginPath, "role.txt");
+        webhookFile = Path.Combine(Paths.PluginPath, "webhook.txt");
+        roleFile = Path.Combine(Paths.PluginPath, "role.txt");
+
+        if (!File.Exists(webhookFile)) File.WriteAllText(webhookFile, "PUT WEBHOOK HERE");
+        if (!File.Exists(roleFile)) File.WriteAllText(roleFile, "PUT ROLE ID HERE");
 
         try
         {
-            if (!File.Exists(webhookFilePath))
-            {
-                File.WriteAllText(webhookFilePath, "REPLACE WITH WEBHOOK");
-                Debug.LogWarning($"GTRoomNotifier: Created webhook.txt at {webhookFilePath}. Please edit it with your webhook URL.");
-            }
+            webhookUrl = File.ReadAllText(webhookFile).Trim();
+            roleId = File.ReadAllText(roleFile).Trim();
+        }
+        catch { }
 
-            if (!File.Exists(roleFilePath))
-            {
-                File.WriteAllText(roleFilePath, "REPLACE WITH ROLE ID");
-                Debug.LogWarning($"GTRoomNotifier: Created role.txt at {roleFilePath}. Please edit it with the role ID to ping.");
-            }
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError("GTRoomNotifier: Error creating files - " + ex.Message);
-        }
-
-        try
-        {
-            webhookUrl = File.ReadAllText(webhookFilePath).Trim();
-            roleId = File.ReadAllText(roleFilePath).Trim();
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError("GTRoomNotifier: Error reading files - " + ex.Message);
-        }
-
-        if (string.IsNullOrEmpty(webhookUrl) || !webhookUrl.StartsWith("https://discord.com/api/webhooks/"))
-        {
-            Debug.LogWarning("GTRoomNotifier: Invalid webhook URL.");
+        if (string.IsNullOrWhiteSpace(webhookUrl) || !webhookUrl.StartsWith("https://discord.com/api/webhooks/"))
             webhookUrl = "";
-        }
 
-        CreateNotificationUI();
+        MakeUI();
 
-        await Task.Delay(3000); // wait for Photon to initialize
-        string playerName = PhotonNetwork.LocalPlayer?.NickName ?? "UnknownPlayer";
-        string timestamp = DateTime.Now.ToString("hh:mm tt");
-
-        if (!string.IsNullOrEmpty(webhookUrl))
-        {
-            string startupMessage = $"🚀 **{playerName}** started the game at **{timestamp}**";
-            await SendDiscordMessage(startupMessage);
-        }
+        PhotonNetwork.AddCallbackTarget(this);
+        _ = SendStartupMsg();
     }
 
-    private void Update()
+    async Task SendStartupMsg()
     {
-        if (PhotonNetwork.InRoom)
-        {
-            string currentRoom = PhotonNetwork.CurrentRoom?.Name;
+        await Task.Delay(2000);
+        var name = PhotonNetwork.LocalPlayer?.NickName ?? "Unknown";
+        var time = DateTime.Now.ToString("hh:mm tt");
 
-            if (!string.IsNullOrEmpty(currentRoom) && currentRoom != lastRoom)
-            {
-                lastRoom = currentRoom;
-
-                string playerName = PhotonNetwork.LocalPlayer?.NickName ?? "UnknownPlayer";
-                string timestamp = DateTime.Now.ToString("hh:mm tt");
-                string message = $"📡 **{playerName}** joined room: **{currentRoom}** | at **{timestamp}**";
-
-                if (!string.IsNullOrEmpty(webhookUrl))
-                {
-                    _ = SendDiscordMessage(message);
-                }
-
-                UpdateNotification($"{timestamp} | Lobby: {currentRoom} | Player: {playerName}");
-            }
-        }
-        else
-        {
-            if (!string.IsNullOrEmpty(lastRoom))
-            {
-                lastRoom = "";
-                UpdateNotification("Not in a lobby");
-            }
-        }
+        if (webhookUrl != "")
+            await SendMsg($"🚀 **{name}** launched the game at **{time}**");
     }
 
-    private async Task SendDiscordMessage(string message)
+    public void OnJoinedRoom()
+    {
+        var room = PhotonNetwork.CurrentRoom?.Name ?? "???";
+        var name = PhotonNetwork.LocalPlayer?.NickName ?? "Unknown";
+        var time = DateTime.Now.ToString("hh:mm tt");
+
+        _ = SendMsg($"📡 **{name}** joined room **{room}** | {time}");
+        UpdateUI($"{time} | Lobby: {room} | Player: {name}");
+    }
+
+    public void OnLeftRoom()
+    {
+        UpdateUI("Not in a lobby");
+    }
+
+    public void OnPlayerEnteredRoom(Player newPlayer) { }
+    public void OnPlayerLeftRoom(Player otherPlayer) { }
+    public void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable changed) { }
+    public void OnPlayerPropertiesUpdate(Player p, ExitGames.Client.Photon.Hashtable changed) { }
+    public void OnMasterClientSwitched(Player newMaster) { }
+
+    async Task SendMsg(string msg)
     {
         try
         {
-            using (HttpClient client = new HttpClient())
+            using (var client = new HttpClient())
             {
-                string pingText = string.IsNullOrEmpty(roleId) ? "" : $"<@&{roleId}>\n";
-                var json = $"{{\"content\":\"{pingText}{message}\"}}";
+                var ping = string.IsNullOrEmpty(roleId) ? "" : $"<@&{roleId}>\n";
+                var json = $"{{\"content\":\"{ping}{msg}\"}}";
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 await client.PostAsync(webhookUrl, content);
             }
         }
-        catch (Exception ex)
-        {
-            Debug.LogError("Webhook error: " + ex.Message);
-        }
+        catch { }
     }
 
-    private void CreateNotificationUI()
+    void MakeUI()
     {
-        GameObject canvasGO = new GameObject("GTRoomNotifierCanvas");
-        Canvas canvas = canvasGO.AddComponent<Canvas>();
+        canvasObj = new GameObject("GTNotifierCanvas");
+        var canvas = canvasObj.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvasGO.AddComponent<CanvasScaler>();
-        canvasGO.AddComponent<GraphicRaycaster>();
+        canvasObj.AddComponent<CanvasScaler>();
+        canvasObj.AddComponent<UnityEngine.UI.GraphicRaycaster>();
+        DontDestroyOnLoad(canvasObj);
 
-        DontDestroyOnLoad(canvasGO);
+        var textObj = new GameObject("GTNotifierText");
+        textObj.transform.SetParent(canvasObj.transform);
 
-        notificationGO = new GameObject("RoomNotificationText");
-        notificationGO.transform.SetParent(canvasGO.transform);
+        notifText = textObj.AddComponent<TextMeshProUGUI>();
+        notifText.fontSize = 26;
+        notifText.color = Color.cyan;
+        notifText.alignment = TextAlignmentOptions.TopLeft;
 
-        notificationText = notificationGO.AddComponent<Text>();
-        notificationText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        notificationText.fontSize = 24;
-        notificationText.alignment = TextAnchor.UpperLeft;
-        notificationText.color = Color.cyan;
-        notificationText.horizontalOverflow = HorizontalWrapMode.Overflow;
-        notificationText.verticalOverflow = VerticalWrapMode.Overflow;
-
-        RectTransform rect = notificationGO.GetComponent<RectTransform>();
+        var rect = textObj.GetComponent<RectTransform>();
         rect.anchorMin = new Vector2(0, 1);
         rect.anchorMax = new Vector2(0, 1);
         rect.pivot = new Vector2(0, 1);
         rect.anchoredPosition = new Vector2(10, -10);
-        rect.sizeDelta = new Vector2(600, 50);
+        rect.sizeDelta = new Vector2(800, 60);
 
-        UpdateNotification("Not in a lobby");
+        UpdateUI("Not in a lobby");
     }
 
-    private void UpdateNotification(string message)
+    void UpdateUI(string msg)
     {
-        if (notificationText != null)
-            notificationText.text = message;
+        if (notifText != null) notifText.text = msg;
+    }
+
+    void OnDestroy()
+    {
+        PhotonNetwork.RemoveCallbackTarget(this);
     }
 }
